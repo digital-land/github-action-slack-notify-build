@@ -1092,7 +1092,8 @@ const { buildSlackAttachments, formatChannelName } = __webpack_require__(543);
 
     const args = {
       channel: channelId,
-      attachments,
+      text: "This is a test from the digital-land github slack action"
+      // attachments,
     };
 
     if (messageId) {
