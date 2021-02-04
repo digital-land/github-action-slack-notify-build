@@ -10026,13 +10026,16 @@ function buildSlackText({ status, color, github }) {
 
   switch (status) {
     case 'STARTED':
-      icon_text = ':loading:'
+      icon_text = ':loading:';
+      break;
     case 'SUCCESS':
-      icon_text = ':white_check_mark:'
+      icon_text = ':white_check_mark:';
+      break;
     case 'FAILED':
-      icon_text = ':x:'
+      icon_text = ':x:';
+      break;
     default:
-      icon_text = ''
+      icon_text = '';
   }
 
 
