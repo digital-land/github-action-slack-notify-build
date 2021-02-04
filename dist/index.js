@@ -1064,7 +1064,7 @@ exports.issueCommand = issueCommand;
 const core = __webpack_require__(470);
 const github = __webpack_require__(469);
 const { WebClient } = __webpack_require__(114);
-const { buildSlackAttachments, formatChannelName } = __webpack_require__(543);
+const { buildSlackText, buildSlackAttachments, formatChannelName } = __webpack_require__(543);
 
 (async () => {
   try {
