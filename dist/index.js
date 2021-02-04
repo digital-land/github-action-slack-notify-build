@@ -10011,7 +10011,20 @@ function buildSlackText({ status, color, github }) {
 
   const sha = event === 'pull_request' ? payload.pull_request.head.sha : github.context.sha;
 
-  return `${repo} - ${status}`
+  const referenceLink =
+    event === 'pull_request'
+      ? {
+          title: 'Pull Request',
+          value: `<${payload.pull_request.html_url} | ${payload.pull_request.title}>`,
+          short: true,
+        }
+      : {
+          title: 'Branch',
+          value: `<https://github.com/${owner}/${repo}/commit/${sha} | ${branch}>`,
+          short: true,
+        };
+
+    return `<https://github.com/${owner}/${repo} | ${repo}> <https://github.com/${owner}/${repo}/commit/${sha}/checks | ${workflow}> ${status} [${event}]`
 }
 
 function buildSlackAttachments({ status, color, github }) {
