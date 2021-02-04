@@ -10026,13 +10026,13 @@ function buildSlackText({ status, color, github }) {
 
   switch (status) {
     case 'STARTED':
-      const icon = ':loading:'
+      let icon = ':loading:'
     case 'SUCCESS':
-      const icon = ':white_check_mark:'
+      let icon = ':white_check_mark:'
     case 'FAILED':
-      const icon = ':x:'
+      let icon = ':x:'
     default:
-      const icon = ''
+      let icon = ''
   }
 
 
