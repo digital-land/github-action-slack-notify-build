@@ -10024,7 +10024,19 @@ function buildSlackText({ status, color, github }) {
           short: true,
         };
 
-    return `<https://github.com/${owner}/${repo} | ${repo}> <https://github.com/${owner}/${repo}/commit/${sha}/checks | ${workflow}> ${status} [${event}]`
+  switch (status) {
+    case 'STARTED':
+      const icon = ':loading:'
+    case 'SUCCESS':
+      const icon = ':white_check_mark:'
+    case 'FAILED':
+      const icon = ':x:'
+    default:
+      const icon = ''
+  }
+
+
+    return `<https://github.com/${owner}/${repo}/commit/${sha}/checks | ${workflow}> workflow on <https://github.com/${owner}/${repo} | ${repo}>: ${status} [trigger: ${event}] ${icon}`
 }
 
 function buildSlackAttachments({ status, color, github }) {
