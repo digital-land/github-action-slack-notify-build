@@ -1081,6 +1081,7 @@ const { buildSlackAttachments, formatChannelName } = __webpack_require__(543);
     }
 
     const attachments = buildSlackAttachments({ status, color, github });
+    console.log(attachments)
     const channelId = core.getInput('channel_id') || (await lookUpChannelId({ slack, channel }));
 
     if (!channelId) {
@@ -1092,7 +1093,7 @@ const { buildSlackAttachments, formatChannelName } = __webpack_require__(543);
 
     const args = {
       channel: channelId,
-      text: "This is a test from the digital-land github slack action"
+      text: buildSlackText({ status, color, github }),
       // attachments,
     };
 
@@ -10001,6 +10002,17 @@ module.exports = resolveCommand;
 /***/ (function(module, __unusedexports, __webpack_require__) {
 
 const { context } = __webpack_require__(469);
+
+function buildSlackText({ status, color, github }) {
+  const { payload, ref, workflow, eventName } = github.context;
+  const { owner, repo } = context.repo;
+  const event = eventName;
+  const branch = event === 'pull_request' ? payload.pull_request.head.ref : ref.replace('refs/heads/', '');
+
+  const sha = event === 'pull_request' ? payload.pull_request.head.sha : github.context.sha;
+
+  return `${repo} - ${status}`
+}
 
 function buildSlackAttachments({ status, color, github }) {
   const { payload, ref, workflow, eventName } = github.context;
