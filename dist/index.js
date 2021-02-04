@@ -10063,6 +10063,7 @@ function buildSlackAttachments({ status, color, github }) {
   ];
 }
 
+module.exports.buildSlackText = buildSlackText;
 module.exports.buildSlackAttachments = buildSlackAttachments;
 
 function formatChannelName(channel) {
